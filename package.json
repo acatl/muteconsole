@@ -1,0 +1,26 @@
+{
+    "name": "muteconsole",
+    "version": "0.1.0",
+    "description": "mute browser's console.log + other console methods",
+    "main": "muteconsole.js",
+    "homepage": "https://github.com/acatl/muteconsole",
+    "author": "Acatl Pacheco <acatl.pacheco@gmail.com>",
+    "license": [{
+        "type": "MIT"
+    }],
+    "keywords": [
+        "console",
+        "log",
+        "mute"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/acatl/muteconsole.git"
+    },
+    "bugs": {
+        "url": "https://github.com/acatl/muteconsole/issues"
+    },
+    "devDependencies": {
+        "grunt-contrib-uglify": "~0.2.0"
+    }
+}
