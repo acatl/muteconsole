@@ -3,7 +3,7 @@ module.exports = function(grunt) {
         '[<%= grunt.template.today("yyyy-mm") %>] | ' +
         'By: <%= pkg.author %> | (c) <%= grunt.template.today("yyyy") %>  */\n';
 
-    var defaultTasks = ['uglify'];
+    var defaultTasks = ['uglify','jasmine'];
     var devTasks = defaultTasks.concat(['watch']);
 
     grunt.initConfig({
@@ -19,10 +19,19 @@ module.exports = function(grunt) {
                 }
             }
         },
+        jasmine: {
+            src: [
+                'muteconsole.js'
+            ],
+            options: {
+                specs: 'tests/*.js'
+            }
+        },
         watch: {
             scripts: {
                 files: [
-                    'muteconsole.js'
+                    'muteconsole.js',
+                    'tests/*.js'
                 ],
                 tasks: defaultTasks
             },
@@ -32,6 +41,7 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-jasmine');
 
     grunt.registerTask('default', defaultTasks);
     grunt.registerTask('dev', devTasks);

@@ -14,23 +14,24 @@
         };
         var muteMethods = function() {
             var i;
+            window.console = window.console || {};
             for (i = features.length - 1; i >= 0; i--) {
                 featureName = features[i];
                 window.console[featureName] = function() {};
             }
         };
 
-        if(!window.console) {
-            window.console = {};
+        if(!arguments.length || !window.console) {
             muteMethods();
             return true;
         }
 
-        if (match(host, enabled)) return;
+        if (match(host, enabled)) return false;
         if (match(host, disabled) && console) {
             muteMethods();
+            return true;
         }
-        return true;
+        return false;
     }
     // AMD compliant
     if (typeof window.define === "function" && window.define.amd) {
