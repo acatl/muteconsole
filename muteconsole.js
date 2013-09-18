@@ -12,15 +12,25 @@
                 if (target.indexOf(source[i]) != -1) return true;
             };
         };
-        if (match(host, enabled)) return;
-        if (match(host, disabled) && console) {
+        var muteMethods = function() {
+            var i;
             for (i = features.length - 1; i >= 0; i--) {
                 featureName = features[i];
-                if (typeof window.console[featureName] != 'undefined') {
-                    window.console[featureName] = function() {};
-                }
+                window.console[featureName] = function() {};
             }
+        };
+
+        if(!window.console) {
+            window.console = {};
+            muteMethods();
+            return true;
         }
+
+        if (match(host, enabled)) return;
+        if (match(host, disabled) && console) {
+            muteMethods();
+        }
+        return true;
     }
     // AMD compliant
     if (typeof window.define === "function" && window.define.amd) {
